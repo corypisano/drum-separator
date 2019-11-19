@@ -1,1 +1,19 @@
-venv/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+frontend/node_modules
+backend/venv
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.vscode/*
+.env_local
+.env
+__pycache__/
+
+npm-debug.log*
