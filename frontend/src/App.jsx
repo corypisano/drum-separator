@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +17,11 @@ import Upload from './components/Upload';
 import MixSlider from './components/MixSlider';
 import GoButton from './components/GoButton';
 
-function App() {
+export default function App() {
+  const [file, setFile] = useState(null);
+  const [activeStep, setActiveStep] = useState(0);
+  const [completed, setCompleted] = useState({});
+
   const logo = require('./purple_sound_wave.png');
 
   const useStyles = makeStyles(theme => ({
@@ -43,7 +47,7 @@ function App() {
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <Upload />;
+        return <Upload onChange={readFile}/>;
       case 1:
         return <MixSlider />;
       case 2:
@@ -52,9 +56,8 @@ function App() {
         return 'Unknown step';
     }
   }
+
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
   const steps = getSteps();
 
   const totalSteps = () => {
@@ -89,6 +92,12 @@ function App() {
 
   const handleStep = step => () => {
     setActiveStep(step);
+  };
+
+  const readFile = (e) => {
+    // TODO check for file valid file & type
+    // flash error if invalid
+    setFile({file: e.target.files[0]});
   };
 
   return (
@@ -141,5 +150,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
