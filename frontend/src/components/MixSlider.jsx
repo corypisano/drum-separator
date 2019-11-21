@@ -4,12 +4,10 @@ import Grid from '@material-ui/core/Grid';
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 
-export default function MixSlider() {
-  const [value, setValue] = React.useState(80);
+export default function MixSlider(props) {
 
-  const handleSliderChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const handleSliderChange = props.handleSliderChange;
+  const drumMix = props.drumMix;
 
   return (
 
@@ -17,7 +15,7 @@ export default function MixSlider() {
       <Grid item xs={10}>
         <Slider
           aria-labelledby="drum-mix-slider"
-          value={typeof value === 'number' ? value : 0}
+          value={typeof drumMix === 'number' ? drumMix : 0}
           onChange={handleSliderChange}
           valueLabelDisplay="on"
         />

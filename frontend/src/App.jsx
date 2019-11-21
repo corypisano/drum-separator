@@ -18,7 +18,11 @@ import MixSlider from './components/MixSlider';
 import GoButton from './components/GoButton';
 
 export default function App() {
+  // API params: file, mix, (email?)
   const [file, setFile] = useState(null);
+  const [drumMix, setDrumMix] = useState(80);
+
+  // Step controls
   const [activeStep, setActiveStep] = useState(0);
   const [completed, setCompleted] = useState({});
 
@@ -49,9 +53,9 @@ export default function App() {
       case 0:
         return <Upload onChange={readFile}/>;
       case 1:
-        return <MixSlider />;
+        return <MixSlider drumMix={drumMix} handleSliderChange={handleSliderChange} />;
       case 2:
-        return <GoButton />;
+        return <GoButton onClick={process} />;
       default:
         return 'Unknown step';
     }
@@ -98,6 +102,21 @@ export default function App() {
     // TODO check for file valid file & type
     // flash error if invalid
     setFile({file: e.target.files[0]});
+  };
+
+  const handleSliderChange = (e, newValue) => {
+    // TODO check for file valid file & type
+    // flash error if invalid
+    setDrumMix(newValue);
+  };
+
+  const process = () => {
+    // call API
+    console.log(
+      `call API with params:
+      file = ${file}
+      drumMix= ${drumMix}`
+    );
   };
 
   return (
