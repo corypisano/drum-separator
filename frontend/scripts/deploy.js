@@ -13,7 +13,7 @@ AWS.config = new AWS.Config({
     region: process.env.AWS_DEFAULT_REGION
 });
 
-glob('./build/**/*', {}, (err, files) => {
+glob('./public/**/*', {}, (err, files) => {
     files.forEach(file => {
         if (!fs.lstatSync(file).isDirectory()) {
             const fileContents = fs.readFileSync(`./${file}`);
@@ -22,7 +22,7 @@ glob('./build/**/*', {}, (err, files) => {
             s3.upload(
                 {
                     Bucket: 'drum-separator',
-                    Key: file.replace('./build/', ''),
+                    Key: file.replace('./public/', ''),
                     Body: fileContents,
                     ContentType: fileMime
                 },
