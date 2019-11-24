@@ -11,14 +11,11 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 ALLOWED_EXTENSIONS = set(['wav', 'mp3'])
+BUCKET_NAME = 'drum-separator'
 
-@app.route('/')
-def hello():
-    return 'Hello, World! <a href="/upload">upload</a>'
-
-@app.route('/upload')
-def upload_form():
-    return render_template('upload.html')
+@app.route('/health')
+def health():
+    return 'Hello, World!', 200
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -42,8 +39,6 @@ def upload():
     file.save(f"./uploads/{filename}")
     flash('File successfully uploaded')
     return redirect(url_for('process_file', filename=filename))
-
-BUCKET_NAME = 'drum-separator'
 
 @app.route('/process_file')
 def process_file():
