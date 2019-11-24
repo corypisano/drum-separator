@@ -19,6 +19,7 @@ jobs:
         npm install
         npm run build --if-present
     - name: Deploy
+      working-directory: ./frontend
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
