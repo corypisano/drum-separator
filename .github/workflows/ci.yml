@@ -10,6 +10,7 @@ jobs:
       with:
         version: 10.x
     - name: Build
+      working-directory: ./frontend
       run: |
         npm install
         npm run build --if-present
