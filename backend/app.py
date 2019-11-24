@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 
 from config import Config
 from audio_separator import load_waveform_from_file, save_to_file, separate_from_waveform
-from utils.S3_manager import upload_file, create_presigned_url
+from S3_manager import upload_file, create_presigned_url
 
 app = Flask(__name__)
 app.config.from_object(Config)
