@@ -58,7 +58,7 @@ SoundFile==0.10.2
 spleeter==1.4.1
 stempeg==0.1.8
 tensorboard==1.14.0
-tensorflow==1.14.0
+tensorflow==1.15.0
 tensorflow-estimator==1.14.0
 termcolor==1.1.0
 tqdm==4.37.0
