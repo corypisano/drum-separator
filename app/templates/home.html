@@ -3,9 +3,14 @@
 {% block content %}
 
 <div class="starter-template">
-    <h1>Flask + Redis Queue + Docker</h1>
+    <h1>Drum Separator</h1>
     <hr><br>
     <div>
+      <h2>Upload</h2>
+      <form method=post enctype=multipart/form-data action="/upload">
+        <input type=file name=file>
+        <input type=submit value=Upload>
+      </form>
       <h3>Tasks</h3>
       <p>Pick a task length...</p>
       <div class="btn-group" role="group" aria-label="Basic example">

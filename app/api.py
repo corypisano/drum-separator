@@ -1,15 +1,36 @@
 import redis
 from rq import Queue, Connection
 from flask import render_template, Blueprint, jsonify, request, current_app
+from werkzeug.utils import secure_filename
 
 from app.worker import create_task
+from app.constants import ALLOWED_EXTENSIONS
 
 api = Blueprint("api", __name__)
-
 
 @api.route("/", methods=["GET"])
 def home():
     return render_template("home.html")
+
+
+def allowed_file(filename):
+	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@api.route('/upload', methods=['POST'])
+def upload():
+    if 'file' not in request.files:
+        return "no file yo", 404
+    f = request.files['file']
+    print('filename')
+    print(f.filename)
+    if not allowed_file(f.filename):
+        return "nah, file not allowed", 400
+    
+    filename = secure_filename(f.filename)
+    print(f"file.filename={f.filename}, filename={filename}")
+    f.save(f"./uploads/{filename}")
+    message = filename
+    return message, 200
 
 @api.route("/tasks", methods=["POST"])
 def run_task():

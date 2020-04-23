@@ -1,0 +1,1 @@
+ALLOWED_EXTENSIONS = set(['wav', 'mp3'])
