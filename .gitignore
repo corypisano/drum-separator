@@ -18,3 +18,10 @@ backend/venv
 __pycache__/
 
 npm-debug.log*
+
+*.pyc
+
+venv/
+venvwsl/
+
+backend/pretrained_models/

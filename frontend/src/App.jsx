@@ -12,6 +12,8 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 
+import axios from 'axios';
+
 import TopColorLine from './components/TopColorLine';
 import Upload from './components/Upload';
 import MixSlider from './components/MixSlider';
@@ -55,7 +57,7 @@ export default function App() {
       case 1:
         return <MixSlider drumMix={drumMix} handleSliderChange={handleSliderChange} />;
       case 2:
-        return <GoButton onClick={process} />;
+        return <GoButton onClick={formHandler} />;
       default:
         return 'Unknown step';
     }
@@ -110,14 +112,36 @@ export default function App() {
     setDrumMix(newValue);
   };
 
-  const process = () => {
-    // call API
-    console.log(
-      `call API with params:
-      file = ${file}
-      drumMix= ${drumMix}`
-    );
+  const formHandler = () => {
+    var formData = new FormData();
+    formData.append('drum_mix', drumMix);
+    formData.append('file', file);
+    formData.append('filename', 'haha2.mp3');
+    console.log('formdata2 is ', formData);
+    axios({
+      method: 'post',
+      url: 'http://127.0.0.1:5000/upload',
+      data: formData,
+    })
+    .then(function (response) {
+      //handle success
+      console.log(response);
+    })
+    .catch(function (response) {
+      //handle error
+      console.log('error', response);
+    });
   };
+
+   const process = () => {
+     // call API
+     console.log(
+       `call API with params:
+       file = ${file}
+       drumMix= ${drumMix}`
+     );
+     formHandler();
+   };
 
   return (
     <div className="App">
@@ -159,6 +183,7 @@ export default function App() {
                       Next
                     </Button>
                   }
+                }
                 </CardActions>
               </CardContent>
             </Card>
