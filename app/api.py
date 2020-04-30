@@ -45,7 +45,12 @@ def process():
     output_dir = './tmp_out'
     separate_drums(filepath, output_dir)
     print('done')
-    return 'done', 202
+    response = {
+        "success": True,
+        "drum_link": "https://drum.com",
+        "audio_link": "https://audio.com",
+    }
+    return jsonify(response), 200
 
 @api.route("/tasks", methods=["POST"])
 def run_task():

@@ -1,0 +1,117 @@
+/* Page defaults */
+body {
+    background: linear-gradient(109.6deg,  rgba(125,89,252,1) 21.2%, 70%, rgba(218,185,252,1) 91.1%) fixed;
+    font-family: 'Segoe UI', Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+
+form {
+    margin-top: 16px;
+    margin-bottom:24px;
+}
+
+/* Header */
+.header {
+    color: white;
+    padding-left: 5%;
+    padding-top: 14px;
+    padding-bottom: 4px;
+    font-size: 20px;
+}
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+
+.btn {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 20px;
+    padding: 0 14px;
+    -webkit-box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+    background: #5ebf8e;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .025em;
+    color: white;
+    text-decoration: none;
+    -webkit-transition: all .15s ease;
+    transition: all .15s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+    color: white;
+}
+
+.custom-file {
+    -webkit-transition: all .15s ease;
+    transition: all .15s ease;
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+
+
+.custom-file:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+}
+
+.content {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20%;
+    width: 50%;
+    color: white;
+}
+
+/* Loader */
+.loading {
+    display: none;
+    cursor: wait;
+}
+
+.rotate {
+    padding: 4px;
+    border-radius: 12px;
+    position: relative;
+    animation: rotation 4s infinite linear alternate;
+    background: rgba(255,255,255,0.8)
+}
+
+@keyframes rotation {
+    0% {
+      transform: rotate(0deg); left: 0px; top: 0px;
+    }
+    25% {
+      transform: rotate(90deg); left:100px; top:0px;
+    }
+    50% {
+      transform: rotate(180deg); left:50px; top:100px;
+    }
+    75% {
+      transform: rotate(-90deg); left:0px; top:100px;
+    }
+    100% {
+      transform: rotate(15deg); left:50px; top:0px
+    }
+  }
+
+@keyframes example {
+    0%   {background-color:red; left:0px; top:0px;}
+    25%  {background-color:yellow; left:100px; top:0px;}
+    50%  {background-color:blue; left:100px; top:100px;}
+    75%  {background-color:green; left:0px; top:100px;}
+    100% {background-color:red; left:0px; top:0px;}
+}
+
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+}

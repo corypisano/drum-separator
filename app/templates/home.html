@@ -2,40 +2,30 @@
 
 {% block content %}
 
-<div class="starter-template">
-    <h1>Drum Separator</h1>
-    <hr><br>
-    <div>
-      <h2>Upload</h2>
-      <form method=post enctype=multipart/form-data action="/process">
-        <input type=file name=file>
-        <input type=submit value=Upload>
-      </form>
-      <h3>Tasks</h3>
-      <p>Pick a task length...</p>
-      <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary" data-type="1">Short</a>
-        <button type="button" class="btn btn-primary" data-type="2">Medium</a>
-        <button type="button" class="btn btn-primary" data-type="3">Long</a>
-      </div>
+<div class="content">
+    <div class="upload">
+    <h2>Select audio track</h2>
+    <form method=post enctype=multipart/form-data action="/process">
+        <div class="custom-file">
+            <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        </div>
+        <div class="process">
+            <button type="submit" class="btn" onclick="loading();">PROCESS</button>
+        </div>
+    </form>
     </div>
-    <br><br>
-    <div>
-      <h3>Task Status</h3>
-      <br>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Status</th>
-            <th>Result</th>
-          </tr>
-        </thead>
-        <tbody id="tasks">
-        </tbody>
-      </table>
+
+    <div class="mx-auto" style="width: 200px">
+        <img class="rotate" src="/static/drum-set.png" />
+        <span class="sr-only">Loading...</span>
     </div>
-  </div>
+    {% if success %}
+    <div id="results">
+        <h3>Success!</h3>
+        <a href="{{ drum_link }}">{{ drum_link }}</a>
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}
