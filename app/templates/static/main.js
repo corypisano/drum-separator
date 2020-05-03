@@ -4,17 +4,13 @@
 $( document ).ready(() => {
     console.log('Sanity Check!');
   });
-  
+
 $('#inputGroupFile01').on('change',function(){
   console.log('im in the jquery change');
   var fileName = $(this).val().replace(/C:\\fakepath\\/i, '');
   //replace the "Choose a file" label
   $(this).next('.custom-file-label').html(fileName);
 });
-
-  $('.btn').on('click', function() {
-    $("#loading").show();    
-  });
 
   $('.btngg').on('click', function() {
     $.ajax({

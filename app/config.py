@@ -14,5 +14,3 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     """
-    REDIS_URL = os.environ.get('REDIS_URL') or 'redis://'
-    QUEUES = ["default"]

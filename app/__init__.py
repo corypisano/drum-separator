@@ -15,7 +15,6 @@ def create_app(script_info=None):
 
     # set config
     app.config.from_object(Config)
-    print('app config with redis: ', app.config['REDIS_URL'])
 
     # register blueprints
     from app.api import api

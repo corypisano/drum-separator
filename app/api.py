@@ -13,11 +13,15 @@ def home():
 def allowed_file(filename):
 	return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+@api.route('/check', methods=['GET'])
+def check():
+    return jsonify({"message": "check"}), 200
+
 @api.route('/upload', methods=['POST'])
 def upload():
     print('in upload')
     if 'file' not in request.files:
-        return "no file yo", 404
+        return "no file yo", 400
     f = request.files['file']
     print('filename')
     print(f.filename)
@@ -34,16 +38,18 @@ def upload():
 def process():
     print(f"in POST /process")
     if 'file' not in request.files:
-        return "no file yo", 404
+        print('no file')
+        return "no file yo", 400
     f = request.files['file']
     if not allowed_file(f.filename):
+        print('not allowed')
         return "nah, file not allowed", 400
     print("saving file")
-    filepath = save_file(f)
+    #filepath = save_file(f)
 
     print('now separating waveform')
     output_dir = './tmp_out'
-    separate_drums(filepath, output_dir)
+    #separate_drums(filepath, output_dir)
     print('done')
     response = {
         "success": True,

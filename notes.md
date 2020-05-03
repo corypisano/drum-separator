@@ -31,3 +31,7 @@ wget http://ftp.altlinux.org/pub/distributions/ALTLinux/Sisyphus/x86_64/RPMS.cla
 http://ftp.altlinux.org/pub/distributions/ALTLinux/Sisyphus/x86_64/RPMS.classic/libgsm-1.0.17-alt1.x86_64.rpm
 
 https://medium.com/@maskaravivek/how-to-install-ffmpeg-on-ec2-running-amazon-linux-451e4a8e2694ff
+
+
+Transform docker-compose.yml to Dockerrun.aws.json
+https://github.com/micahhausler/container-transform
