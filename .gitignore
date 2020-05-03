@@ -27,3 +27,7 @@ venv/
 venvwsl/
 
 backend/pretrained_models/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

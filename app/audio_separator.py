@@ -4,8 +4,6 @@ from spleeter.separator import Separator
 #from spleeter.utils.audio.adapter import get_default_audio_adapter
 #audio_loader = get_default_audio_adapter()
 
-import soundfile as sf
-
 
 def run(audio_path, drum_ratio):
     """ drum percent is amount of drums in output mix, 0 to 1 """

@@ -1,0 +1,5 @@
+venv
+venvwsl
+tmp
+tmp_out
+pretrained_models
