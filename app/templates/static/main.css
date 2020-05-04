@@ -10,6 +10,9 @@ form {
     margin-bottom:24px;
 }
 
+p {
+    margin-bottom: 0rem;
+}
 
 /* Header */
 .header {
@@ -39,7 +42,6 @@ h1 {
     text-transform: uppercase;
     letter-spacing: .025em;
     color: white;
-    text-decoration: none;
     -webkit-transition: all .15s ease;
     transition: all .15s ease;
 }
@@ -72,18 +74,40 @@ h1 {
 
 .results {
     margin-top: 60px;
-    background: white;
-    color: black;
-    padding: 10px;
-    border-radius: 6px;
-    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
 }
 
 .list-item {
+    min-width: 220px;
+    position: relative;
     background: hsl(210, 9%, 96%);
     border-radius: 6px;
     padding: 10px;
-    margin-bottom: 16px;
+    margin: 8px;
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+    -webkit-transition: all .15s ease;
+    transition: all .15s ease;
+}
+
+.list-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+}
+
+.download {
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    font-weight: 600;
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
+}
+
+a:link{
+    text-decoration: none!important;
+  }
+
+h5 {
+    color: rgb(40, 20, 80);
 }
 
 /* Loader */

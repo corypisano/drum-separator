@@ -20,8 +20,8 @@ $(document).ready(function() {
                 console.log(data);
                 $(".loading").hide();    
                 $(".results").show();
-                $('.drum-link').replaceWith(`<a href="${data.drum_link}">drum link</a>`);
-                $('.audio-link').replaceWith(`<a href="${data.audio_link}">audio link</a>`);
+                $('.drum-link').attr("href", data.drum_link);
+                $('.audio-link').attr("href", data.audio_link);
             },
             error: function(error){
                 console.log(error);
