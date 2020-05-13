@@ -1,17 +1,19 @@
 ### spleeter
 from spleeter.separator import Separator
 
-#from spleeter.utils.audio.adapter import get_default_audio_adapter
-#audio_loader = get_default_audio_adapter()
+# from spleeter.utils.audio.adapter import get_default_audio_adapter
+# audio_loader = get_default_audio_adapter()
 
 
 def run(audio_path, drum_ratio):
     """ drum percent is amount of drums in output mix, 0 to 1 """
     pass
 
-def separate_drums(audio_path, output_dir='/output'):
-    separator = Separator('spleeter:4stems')
+
+def separate_drums(audio_path, output_dir="/output"):
+    separator = Separator("spleeter:4stems")
     separator.separate_to_file(audio_path, output_dir)
+
 
 """
 def separate_from_waveform(waveform):
@@ -36,11 +38,13 @@ def save_to_file(waveform, path, sample_rate):
     return True
 """
 
+
 def add_waveforms(waveforms=[]):
     result = []
     for waveform in waveforms:
         pass
     return result
+
 
 def write_audio(audio_data, name):
     """Write out audio data as 24bit PCM WAV"""

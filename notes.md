@@ -35,3 +35,9 @@ https://medium.com/@maskaravivek/how-to-install-ffmpeg-on-ec2-running-amazon-lin
 
 Transform docker-compose.yml to Dockerrun.aws.json
 https://github.com/micahhausler/container-transform
+
+
+gunicorn?
+
+how to run Dockerfile locally?
+
