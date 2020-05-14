@@ -3,3 +3,4 @@ Flask==1.1.2
 requests==2.20.1
 python-dotenv==0.13.0
 spleeter==1.5.0
+boto3==1.13.4
