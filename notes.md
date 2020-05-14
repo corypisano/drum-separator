@@ -26,10 +26,6 @@ libsndfile missing on Amazon Linux EMI
 sudo apt-get install libsndfile1
 apt-get also missing, switch to ubuntu?
 https://stackoverflow.com/questions/31287024/how-to-install-audiowaveform-program-on-aws-elastic-beanstalk
-wget http://ftp.altlinux.org/pub/distributions/ALTLinux/Sisyphus/x86_64/RPMS.classic//libsndfile-devel-1.0.28-alt1.x86_64.rpm
-wget http://ftp.altlinux.org/pub/distributions/ALTLinux/Sisyphus/x86_64/RPMS.classic//libsndfile-1.0.28-alt2.x86_64.rpm
-http://ftp.altlinux.org/pub/distributions/ALTLinux/Sisyphus/x86_64/RPMS.classic/libgsm-1.0.17-alt1.x86_64.rpm
-
 https://medium.com/@maskaravivek/how-to-install-ffmpeg-on-ec2-running-amazon-linux-451e4a8e2694ff
 
 
@@ -40,4 +36,10 @@ https://github.com/micahhausler/container-transform
 gunicorn?
 
 how to run Dockerfile locally?
+
+## Deploy
+
+```sh
+ebdeploy
+```
 

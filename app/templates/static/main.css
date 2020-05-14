@@ -76,6 +76,10 @@ h1 {
     margin-top: 60px;
 }
 
+.error {
+    display: none;
+}
+
 .list-item {
     min-width: 220px;
     position: relative;

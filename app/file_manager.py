@@ -12,22 +12,29 @@ s3_client = boto3.client(
     "s3", aws_access_key_id=AWS_ACCESS_KEY, aws_secret_access_key=AWS_SECRET_KEY
 )
 
+# create directory to store uploaded files
+INPUT_FILE_DIR = "./input_files"
+os.makedirs(INPUT_FILE_DIR, exist_ok=True)
+
+logger = logging.getLogger()
+
 
 def save_file(input_file):
     """Saves file to tmp directory"""
-    filename = secure_filename(input_file.filename)
-    filepath = f"./tmp/{filename}"
+    filepath = os.path.join(INPUT_FILE_DIR, secure_filename(input_file.filename))
+
+    logger.info(f"saving file to {filepath}")
     input_file.save(filepath)
     return filepath
 
 
-def upload_file_to_s3(file_name, bucket_name="drum-separator", object_name=None):
+def upload_file_to_s3(file_name, object_name=None, bucket_name="drum-separator"):
     """Upload a file to an S3 bucket, return signed url
 
     :param file_name: File to upload
-    :param bucket_name: Bucket to upload to
     :param object_name: S3 object name. If not specified then file_name is used
-    :return: True if file was uploaded, else False
+    :param bucket_name: Bucket to upload to
+    :return: signed_url to access the file
     """
 
     # If S3 object_name was not specified, use file_name
@@ -36,6 +43,7 @@ def upload_file_to_s3(file_name, bucket_name="drum-separator", object_name=None)
 
     # Upload the file
     try:
+        logger.info(f"uploading file: {file_name}")
         s3_client.upload_file(file_name, bucket_name, object_name)
     except ClientError as e:
         logging.error(e)

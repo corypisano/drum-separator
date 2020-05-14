@@ -26,6 +26,8 @@ $(document).ready(function() {
             error: function(error){
                 console.log(error);
                 $(".loading").hide();
+                $(".error").show();
+                $(`<p>Oops, there was an error: ${error.statusText}</p>`).appendTo('.error');
             }
         });
     });
