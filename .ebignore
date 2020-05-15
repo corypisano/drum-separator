@@ -3,3 +3,5 @@ venvwsl
 tmp
 tmp_out
 pretrained_models
+input_files
+output_files
