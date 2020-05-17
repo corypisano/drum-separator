@@ -1,6 +1,8 @@
 ### spleeter
 from spleeter.separator import Separator
 
+from pydub import AudioSegment
+
 # from spleeter.utils.audio.adapter import get_default_audio_adapter
 # audio_loader = get_default_audio_adapter()
 
@@ -11,8 +13,21 @@ def run(audio_path, drum_ratio):
 
 
 def separate_drums(audio_path, output_dir="/output"):
-    separator = Separator("spleeter:4stems")
+    # separator = Separator("spleeter:4stems")
+    separator = Separator("./spleeter-16khz.json")
     separator.separate_to_file(audio_path, output_dir)
+
+
+def combine_drumless(output_dir, song_name):
+    """Combine bass, vocals, and other into drumless file, return the filepath"""
+    sound1 = AudioSegment.from_wav(f"{output_dir}/{song_name}/bass.wav")
+    sound2 = AudioSegment.from_wav(f"{output_dir}/{song_name}/vocals.wav")
+    sound3 = AudioSegment.from_wav(f"{output_dir}/{song_name}/other.wav")
+    combined = sound1.overlay(sound2).overlay(sound3)
+
+    drumless_filepath = f"{output_dir}/{song_name}/drumless.wav"
+    combined.export(drumless_filepath, format="wav")
+    return drumless_filepath
 
 
 """

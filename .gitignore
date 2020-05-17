@@ -6,6 +6,8 @@ backend/venv
 pretrained_models/
 tmp/
 tmp_out/
+input_files/
+output_files/
 
 # testing
 /coverage

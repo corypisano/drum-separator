@@ -21,11 +21,12 @@ logger = logging.getLogger()
 
 def save_file(input_file):
     """Saves file to tmp directory"""
-    filepath = os.path.join(INPUT_FILE_DIR, secure_filename(input_file.filename))
+    safe_filename = secure_filename(input_file.filename)
+    filepath = os.path.join(INPUT_FILE_DIR, safe_filename)
 
     logger.info(f"saving file to {filepath}")
     input_file.save(filepath)
-    return filepath
+    return filepath, safe_filename
 
 
 def upload_file_to_s3(file_name, object_name=None, bucket_name="drum-separator"):
