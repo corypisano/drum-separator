@@ -1,9 +1,12 @@
 
 $(document).ready(function() {
+
     $('.submit').click(function(){  
         // display loading spinner
         $(".results").hide();
         $(".loading").show();
+        $('#break-up-btn').prop('disabled', true);
+
 
         // can't pass Jquery form, has to be javascript form object
         var form = $("form");
@@ -20,6 +23,8 @@ $(document).ready(function() {
                 console.log(data);
                 $(".loading").hide();    
                 $(".results").show();
+                $('#break-up-btn').prop('disabled', false);
+                $(".error").hide();
                 $('.drum-link').attr("href", data.drum_link);
                 $('.audio-link').attr("href", data.audio_link);
             },
@@ -27,6 +32,7 @@ $(document).ready(function() {
                 console.log(error);
                 $(".loading").hide();
                 $(".error").show();
+                $('#break-up-btn').prop('disabled', false);
                 $(`<p>Oops, there was an error: ${error.statusText}</p>`).appendTo('.error');
             }
         });

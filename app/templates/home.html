@@ -4,19 +4,21 @@
 
 <div class="content">
     <div class="upload">
-    <h2>Select audio track</h2>
-    <form role="form">
-        <div class="custom-file">
-            <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-        </div>
-        <div class="process">
-            <button type="button" class="btn submit">PROCESS</button>
-        </div>
-    </form>
+        <h2>Select audio file</h2>
+        <form role="form">
+            <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+            </div>
+            <p class="help">Select an mp3 or wav file</p>
+            <div class="process">
+                <button id="break-up-btn" type="button" class="btn submit">BREAK UP</button>
+            </div>
+        </form>
     </div>
 
-    <div class="loading mx-auto" style="width: 200px">
+    <div class="loading mx-auto" style="width: 300px">
+        <p>This will take a moment, be patient!</p>
         <img class="rotate" src="/static/drum-set.png" />
         <span class="sr-only">Loading...</span>
     </div>

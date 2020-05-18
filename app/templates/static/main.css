@@ -22,11 +22,6 @@ p {
     padding-bottom: 4px;
     font-size: 20px;
 }
-h1 {
-    font-size: 28px;
-    font-weight: 600;
-}
-
 
 .btn {
     height: 40px;
@@ -47,7 +42,7 @@ h1 {
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) rotate3d(0.5,1,2,-2deg);
     box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
     color: white;
 }
@@ -64,6 +59,11 @@ h1 {
     box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
 }
 
+.help {
+    margin-top: 8px;
+    color: rgba(220,220,220);
+}
+
 .content {
     margin-left: auto;
     margin-right: auto;
@@ -73,6 +73,7 @@ h1 {
 }
 
 .results {
+    display: none;
     margin-top: 60px;
 }
 
@@ -133,27 +134,18 @@ h5 {
       transform: rotate(0deg); left: 0px; top: 0px;
     }
     25% {
-      transform: rotate(90deg); left:100px; top:0px;
+      transform: rotate(90deg); left:200px; top:30px;
     }
     50% {
-      transform: rotate(180deg); left:50px; top:100px;
+      transform: rotate(180deg); left:100px; top:150px;
     }
     75% {
-      transform: rotate(-90deg); left:0px; top:100px;
+      transform: rotate(-90deg); left:0px; top:75px;
     }
     100% {
-      transform: rotate(15deg); left:50px; top:0px
+      transform: rotate(15deg); left:200px; top:0px
     }
-  }
-
-@keyframes example {
-    0%   {background-color:red; left:0px; top:0px;}
-    25%  {background-color:yellow; left:100px; top:0px;}
-    50%  {background-color:blue; left:100px; top:100px;}
-    75%  {background-color:green; left:0px; top:100px;}
-    100% {background-color:red; left:0px; top:0px;}
 }
-
 
 /* Footer */
 .footer {
