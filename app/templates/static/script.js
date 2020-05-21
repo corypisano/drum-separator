@@ -1,6 +1,24 @@
 
 $(document).ready(function() {
 
+    $('.queue').click(function(){  
+        // display loading spinner
+        
+        var url = "/queue";
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    });
+
     $('.submit').click(function(){  
         // display loading spinner
         $(".results").hide();

@@ -1,7 +1,7 @@
 ### spleeter
-from spleeter.separator import Separator
+#from spleeter.separator import Separator
 
-from pydub import AudioSegment
+#from pydub import AudioSegment
 
 # from spleeter.utils.audio.adapter import get_default_audio_adapter
 # audio_loader = get_default_audio_adapter()
@@ -10,12 +10,6 @@ from pydub import AudioSegment
 def run(audio_path, drum_ratio):
     """ drum percent is amount of drums in output mix, 0 to 1 """
     pass
-
-
-def separate_drums(audio_path, output_dir="/output"):
-    # separator = Separator("spleeter:4stems")
-    separator = Separator("./spleeter-16khz.json")
-    separator.separate_to_file(audio_path, output_dir)
 
 
 def combine_drumless(output_dir, song_name):
