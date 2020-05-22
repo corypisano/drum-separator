@@ -4,25 +4,12 @@ import os
 from flask import render_template, Blueprint, request, current_app
 
 from app.utils import allowed_file
-from app.file_manager import save_file, upload_file_to_s3
+from app.file_manager import FileManager
+from app.queue_manager import QueueManager
 
 api = Blueprint("api", __name__)
 
 logger = logging.getLogger()
-
-import boto3
-
-# Create SQS client
-AWS_ACCESS_KEY = os.environ["AWS_ACCESS_KEY"]
-AWS_SECRET_KEY = os.environ["AWS_SECRET_KEY"]
-sqs = boto3.client(
-    "sqs",
-    region_name="us-east-1",
-    aws_access_key_id=AWS_ACCESS_KEY,
-    aws_secret_access_key=AWS_SECRET_KEY,
-)
-
-queue_url = "https://sqs.us-east-1.amazonaws.com/797520980319/break-up-song-queue"
 
 
 @api.route("/", methods=["GET"])
@@ -42,6 +29,7 @@ def check():
 def process():
     logger.info("in POST /process")
 
+    email = request.form.get("email")
     if "file" not in request.files:
         logger.info("no file in request")
         return "no file yo", 400
@@ -50,23 +38,24 @@ def process():
         logger.info("file not an allowed file type")
         return "nah, file not allowed", 400
 
-    email = request.form.get("email")
-    print("email is ", email)
-
     # save input file and separate
-    input_filepath, safe_filename = save_file(f)
+    input_filepath, safe_filename = FileManager.save_file(f)
     song_name = safe_filename.split(".")[0]
 
-    signed_input_url = upload_file_to_s3(input_filepath, object_name=safe_filename)
-    print("signed_input_url is", signed_input_url)
-    print("sending sqs message")
-    response = sqs.send_message(
-        QueueUrl=queue_url,
-        MessageAttributes={
-            "file_s3_url": {"DataType": "String", "StringValue": signed_input_url},
-            "email": {"DataType": "String", "StringValue": email,},
-            "song_name": {"DataType": "String", "StringValue": song_name,},
-        },
-        MessageBody="body",
-    )
+    s3_object_name = FileManager.upload_to_s3(input_filepath, object_name=safe_filename)
+    data = {"s3_object_name": s3_object_name, "email": email, "song_name": song_name}
+    response = QueueManager.send_message("break_up_drums", data)
     return "ok", 200
+
+
+@api.route("/process_error", methods=["POST"])
+def handle_process_error():
+    """This app should be responsible for managing dynamodb store
+    so CRUD actions can be done by client
+    but if we update someones credits and then the process fails,
+    need an endpoint for the worker to hit so that the credit isn't taken away
+    """
+    # email
+    # error?
+    # restore_credit = true/false
+    pass
