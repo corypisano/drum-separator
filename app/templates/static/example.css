@@ -1,0 +1,53 @@
+
+/* playlist */
+.list-group-item {
+    color: rgba(255,255,255,0.6);
+    background: rgba(250, 250, 250, 0.05);
+}
+.list-group-item.active {
+    color: white;
+    font-weight: 600;
+    background: rgba(250, 250, 250, 0.125);
+    border-color: rgba(255,255,255,0.4);
+}
+.list-group-item:first-of-type {
+    border-radius: 4px 4px 0 0;
+}
+.list-group-item:last-of-type {
+    border-radius: 0 0 4px 4px;
+}
+
+.list-group-item:hover {
+    color: white;
+    font-weight: 600;
+}
+
+/* duration badges */
+.duration {
+    background-color: rgba(255,255,255,0.5);
+    float: right;
+    margin-top: 3px;
+}
+.list-group-item.active > .duration {
+    background-color: white;
+}
+
+/* Customize container */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 900px;
+    }
+}
+
+#waveform {
+    position: relative;
+}
+
+#progress-bar {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    margin-top: -10px;
+    left: 5%;
+    width: 90%;
+}

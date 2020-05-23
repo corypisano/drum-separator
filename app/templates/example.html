@@ -1,0 +1,61 @@
+{% extends "_base.html" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='example.css')}}">
+{% endblock %}
+
+{% block js %}
+<script src="{{url_for('static', filename='example.js')}}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+
+<div id="example">
+    <div class="row" style="margin: 30px 0">
+        <div class="col-sm-10">
+            <div id="waveform">
+                <!-- waveform go here-->
+            </div>
+        </div>
+        
+
+        <div class="col-sm-2">
+            <button class="btn btn-block" id="playPause">
+                <span id="play">
+                    <i class="glyphicon glyphicon-play"></i>
+                    Play
+                </span>
+
+                <span id="pause" style="display: none">
+                    <i class="glyphicon glyphicon-pause"></i>
+                    Pause
+                </span>
+            </button>
+        </div>
+    </div>
+
+    <div class="list-group" id="playlist">
+        <p style="margin: 10px 0">Try out some samples from some of my favorite tracks</p>
+        
+        <a href="static/15steps.mp3" class="list-group-item">
+            <i class="glyphicon glyphicon-play"></i>
+            Radiohead - 15 steps [ORIGINAL]
+            <span class="badge badge-light duration">0:20</span>
+        </a>
+
+        <a href="static/15steps_drums.wav" class="list-group-item">
+            <i class="far fa-play-circle"></i>
+            Radiohead - 15 steps [DRUMS]
+            <span class="badge badge-light duration">0:20</span>
+        </a>
+
+        <a href="static/drums.wav" class="list-group-item">
+            <i class="glyphicon glyphicon-play"></i>
+            other.wav
+            <span class="badge badge-light duration">1:26</span>
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}
