@@ -15,12 +15,20 @@ p {
 }
 
 /* Header */
-.header {
+.navbar-dark .navbar-nav .nav-link {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #f0f0f0;
+}
+
+.navbar a:hover {
+    transform: translateY(-1px);
+}
+
+.navbar-dark .navbar-nav .active > .nav-link {
+    font-size: 1.2rem;
+    font-weight: 500;
     color: white;
-    padding-left: 5%;
-    padding-top: 14px;
-    padding-bottom: 4px;
-    font-size: 20px;
 }
 
 .btn {
@@ -54,9 +62,16 @@ p {
     margin-bottom: 30px;
 }
 
+input {
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+}
+input:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+}
 
 .custom-file:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
     box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
 }
 

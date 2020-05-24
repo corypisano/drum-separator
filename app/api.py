@@ -26,6 +26,12 @@ def example():
     return render_template("example.html")
 
 
+@api.route("/about", methods=["GET"])
+def about():
+    """Example samples with audio player"""
+    return render_template("about.html")
+
+
 @api.route("/check", methods=["GET"])
 def check():
     return {"message": "check"}, 200
