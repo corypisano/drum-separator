@@ -1,8 +1,10 @@
 import logging
 import os
+from datetime import datetime
 
 from flask import render_template, Blueprint, request, current_app
 
+from app.user import User, DoesNotExist
 from app.utils import allowed_file
 from app.file_manager import FileManager
 from app.queue_manager import QueueManager
@@ -50,6 +52,19 @@ def process():
         logger.info("file not an allowed file type")
         return "nah, file not allowed", 400
 
+    # save user if dont exist
+    try:
+        # if user does exist, increase song count
+        # reduce credits by 1
+        user = User.get(email)
+    except DoesNotExist:
+        # if user doesnt exist, create w/
+        # 5 credits, 1 song_count, songs = [song]
+        user = User(
+            email=email,
+            created_at=datetime.now()
+        )
+        user.save()
     # save input file and separate
     input_filepath, safe_filename = FileManager.save_file(f)
     song_name = safe_filename.split(".")[0]
