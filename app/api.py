@@ -4,7 +4,7 @@ from datetime import datetime
 
 from flask import render_template, Blueprint, request, current_app
 
-from app.user import User, DoesNotExist
+from app.user import User
 from app.utils import allowed_file
 from app.file_manager import FileManager
 from app.queue_manager import QueueManager
@@ -57,12 +57,16 @@ def process():
         # if user does exist, increase song count
         # reduce credits by 1
         user = User.get(email)
-    except DoesNotExist:
+        print(f'user {email} exists')
+    except User.DoesNotExist:
         # if user doesnt exist, create w/
         # 5 credits, 1 song_count, songs = [song]
+        print(f'user {email} doesnt exist, creating')
         user = User(
             email=email,
-            created_at=datetime.now()
+            created_at=datetime.now(),
+            song_count=0,
+            credits=5,
         )
         user.save()
     # save input file and separate
@@ -72,6 +76,14 @@ def process():
     s3_object_name = FileManager.upload_to_s3(input_filepath, object_name=safe_filename)
     data = {"s3_object_name": s3_object_name, "email": email, "song_name": song_name}
     response = QueueManager.send_message("break_up_drums", data)
+    
+    # update user
+    print('updating credits, song_count')
+    user.credits -= 1
+    user.song_count += 1
+    user.last_seen = datetime.now()
+    user.songs.append(song_name)
+    user.save()
     return "ok", 200
 
 

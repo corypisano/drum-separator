@@ -1,7 +1,7 @@
 import os
 
 from pynamodb.models import Model
-from pynamodb.attributes import UnicodeAttribute, NumberAttribute, UnicodeSetAttribute, UTCDateTimeAttribute
+from pynamodb.attributes import UnicodeAttribute, NumberAttribute, ListAttribute, UTCDateTimeAttribute
 
 class User(Model):
     """
@@ -16,7 +16,7 @@ class User(Model):
     song_count = NumberAttribute(default=0)
     credits = NumberAttribute(default=0)
     ip = UnicodeAttribute(null=True)
-    songs = UnicodeSetAttribute(default=[])
+    songs = ListAttribute(default=list)
     created_at = UTCDateTimeAttribute(null=True)
     last_seen = UTCDateTimeAttribute(null=True)
 
