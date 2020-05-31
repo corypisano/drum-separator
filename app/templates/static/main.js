@@ -1,51 +1,46 @@
-// custom javascript
+$(document).ready(function() {
 
-// https://stackoverflow.com/questions/14525029/display-a-loading-message-while-a-time-consuming-function-is-executed-in-flask
-$( document ).ready(() => {
-    console.log('Sanity Check!');
-  });
+    /* Update file input with filename */
+    $('#inputGroupFile01').on('change',function(e){
+        console.log("onchange");
+        //get the file name
+        var fileName = e.target.files[0].name;
+        //replace the "Choose a file" label
+        $(this).next('.custom-file-label').html(fileName);
+    });
 
-$('#inputGroupFile01').on('change',function(){
-  console.log('im in the jquery change');
-  var fileName = $(this).val().replace(/C:\\fakepath\\/i, '');
-  //replace the "Choose a file" label
-  $(this).next('.custom-file-label').html(fileName);
+    /* Make the api request on form submit, handle loading & error states */
+    $('.submit').click(function(){  
+        // display loading spinner
+        $(".results").hide();
+        $(".loading").show();
+        $('#break-up-btn').prop('disabled', true);
+
+        // can't pass Jquery form, has to be javascript form object
+        var form = $("form");
+        var formData = new FormData(form[0]);
+        
+        var url = "/process";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log(data);
+                $(".loading").hide();    
+                $(".results").show();
+                $('#break-up-btn').prop('disabled', false);
+                $(".error").hide();
+            },
+            error: function(error){
+                console.log(error);
+                $(".loading").hide();
+                $(".error").show();
+                $('#break-up-btn').prop('disabled', false);
+                $(`<p>Oops, there was an error: ${error.statusText}</p>`).appendTo('.error');
+            }
+        });
+    });
 });
-
-  $('.btngg').on('click', function() {
-    $.ajax({
-      url: '/tasks',
-      data: { type: $(this).data('type') },
-      method: 'POST'
-    })
-    .done((res) => {
-      getStatus(res.data.task_id)
-    })
-    .fail((err) => {
-      console.log(err)
-    });
-  });
-  
-  function getStatus(taskID) {
-    $.ajax({
-      url: `/tasks/${taskID}`,
-      method: 'GET'
-    })
-    .done((res) => {
-      const html = `
-        <tr>
-          <td>${res.data.task_id}</td>
-          <td>${res.data.task_status}</td>
-          <td>${res.data.task_result}</td>
-        </tr>`
-      $('#tasks').prepend(html);
-      const taskStatus = res.data.task_status;
-      if (taskStatus === 'finished' || taskStatus === 'failed') return false;
-      setTimeout(function() {
-        getStatus(res.data.task_id);
-      }, 10000);
-    })
-    .fail((err) => {
-      console.log(err)
-    });
-  }
